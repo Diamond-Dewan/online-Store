@@ -4,7 +4,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'nwj%4@eei$tmekvk_vvt(&i7sd4bd$s@pxy0f=*o_60x(56+z1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,4 +134,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # STRIPE
 STRIPE_PUBLIC_KEY = ''
-STRIPE_SECRET_KEY = 'sk_test_PsmUUeC1zx7uZK7PBnGzTfy500LqAlPjYs'
+STRIPE_SECRET_KEY = ''
