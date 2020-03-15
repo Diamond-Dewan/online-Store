@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!--Main layout-->
+    <main>
+        <div class="container">
+            <!--Section: Products v.3-->
+            <section class="text-center mb-3">
+                <div class="row wow fadeIn">
+                    <div class="table-responsive mt-4">
+                        <h2>Order Summery</h2>
+                        <table class="table table-striped">
+                            <thead class="blue-gradient white-text">
+                            <tr class="font-weight-bold">
+                                <th scope="col">#</th>
+                                <th scope="col"><i class="fas fa-th-list"></i></th>
+                                <th scope="col"><i class="fas fa-dollar-sign mr-2" aria-hidden="true"></i></th>
+                                <th scope="col"><i class="fas fa-shopping-cart mr-1"></i></th>
+                                <th scope="col"><i class="fas fa-cash-register mr-2" aria-hidden="true"></i></th>
+                                <th scope="col"><i class="fas fa-hand-holding-usd" aria-hidden="true"></i></th>
+                                <th scope="col"><i class="fas fa-trash-alt" aria-hidden="true"></i></th>
+                            </tr>
+                            </thead>
+
+                            {% if order %}
+                                <tbody>
+                                {% for item in order.cart_products.all %}
+                                    <tr>
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td><a href="{% url 'backend:product' item.product.id %}">{{ item.product.title }}</a></td>
+                                        <td >
+                                            {% if item.product.discount_price %}
+                                                <del class="text-muted">{{ item.product.price }}</del>
+                                                <span class="font-weight-bold">{{ item.product.discount_price }}</span>
+                                            {% else %}
+                                                {{ item.product.price }}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a class="mr-lg-2" href="{% url 'backend:remove-single-cart-item' item.product.id %}"><i class="fas fa-minus fa-sm"></i></a>
+                                            {{ item.quantity }}
+                                            <a class="ml-lg-2" href="{% url 'backend:add_to_cart' item.product.id %}"><i class="fas fa-plus fa-sm"></i></a>
+                                        </td>
+                                        <td>
+                                            {% if item.product.discount_price %}
+                                                {{ item.get_total_discount_price }}
+                                            {% else %}
+                                                {{ item.get_total_price }}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if item.product.discount_price %}
+                                                <span class="green-text darken-3"><strong>{{ item.get_saving_price }}</strong></span>
+                                            {% else %}
+                                                <span>00.0</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a class="red-text" href="{% url 'backend:remove-from-cart' item.product.id %}"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td class="font-weight-bold" colspan="4">Pay Amount: </td>
+                                    <td class="font-weight-bold" colspan="3">${{ order.final_order_price }}</td>
+                                </tr>
+                                </tbody>
+                                <tr>
+                                    <td colspan="7">
+                                        <a href="{% url 'backend:checkout' %}" class="btn btn-pink" >Checkout</a>
+                                        <a href="{% url 'backend:home' %}" class="btn btn-primary">Continue Shopping</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <h2 class="red-text">Your cart is empty!</h2>
+                            {% endif %}
+                        </table>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+  <!--Main layout-->
+{% endblock content %}

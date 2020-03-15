@@ -1,0 +1,46 @@
+<ul class="nav blue-gradient row fixed-bottom rounded">
+    {% if request.user.is_authenticated %}
+        <li class="nav-item dropup col text-center">
+            <a class="nav-link dropdown-toggle" id="searchdropup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-lg pr-1 mt-2 text-white" aria-hidden="false"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right bg-transparent border-0" aria-labelledby="searchdropup">
+                <form class="dropdown-item form-inline justify-content-center blue darken-2 rounded-pill">
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-2 white-text" type="text" placeholder="" aria-label="Search">
+                    </div>
+                </form>
+            </div>
+        </li>
+
+        <li class="nav-item col text-center">
+            <a href="" class="nav-link waves-effect white-text">
+                <i class="fas fa-filter fa-lg pr-1 mt-2" aria-hidden="true"></i>
+            </a>
+        </li>
+
+        <li class="nav-item col text-center">
+            <a href="{% url 'backend:orders' %}" class="nav-link waves-effect white-text">
+                <i class="fas fa-shopping-cart fa-lg pr-1 mt-2" aria-hidden="false" style="position: relative"></i>
+                {% if cart_count %}
+                    <span class="pink-text font-weight-bold badge badge-danger mt-1" style="position: absolute; top: 0.01rem; right: 0.2rem; padding: .1rem .3rem;">{{ cart_count }}</span>
+                {% endif %}
+            </a>
+        </li>
+        
+        <li class="nav-item dropup col text-center">
+            <a class="nav-link dropdown-toggle" id="profileDropDown" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+{#                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0" aria-hidden="true" alt="avatar image" height="35">#}
+                <i class="fas fa-user-circle fa-lg pr-1 mt-2 text-white"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right blue darken-2" aria-labelledby="profileDropDown">
+                <a class="dropdown-item font-weight-bold" href="#">My account</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item font-weight-bold" href="{% url 'account_logout' %}">Log out <i class="fas fa-sign-out-alt float-right text-danger mt-1"></i></a>
+            </div>
+        </li>
+    {% else %}
+
+    {% endif %}
+</ul>

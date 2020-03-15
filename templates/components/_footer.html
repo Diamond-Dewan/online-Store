@@ -1,0 +1,22 @@
+<!-- Footer -->
+<footer class="page-footer font-small blue-gradient">
+      <!-- Copyright -->
+      <div class="text-center py-3">
+          <span class="yellow-text">
+            &copy;<script>document.write(new Date().getFullYear());</script> Copyright:
+          </span>
+        <a href="#" class="font-weight-bold">E-Store</a>
+      </div>
+
+    {% if not request.user.is_authenticated %}
+        <hr>
+        <div class="container">
+            <div class="row px-5">
+                <a class="col btn btn-sm btn-outline-white rounded-pill" href="{% url 'account_login' %}">Login</a>
+                <a class="col btn btn-sm btn-outline-white rounded-pill" href="{% url 'account_signup' %}">SignUp</a>
+            </div>
+        </div>
+    {% endif %}
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->

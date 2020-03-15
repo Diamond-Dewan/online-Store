@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="card my-4">
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Refund request</strong>
+            </h5>
+            <div class="card-body px-lg-5">
+                <form method="post" class="text-center p-3">
+                    {% csrf_token %}
+                    <!-- Name -->
+                    {{ form.ref_code }}
+{#                    <input type="text" id="defaultSubscriptionFormPassword" class="form-control mb-4" placeholder="Name">#}
+                    <!-- Message -->
+                    <div class="form-group">
+{#                        <textarea class="form-control rounded-3" id="exampleFormControlTextarea2" rows="5" placeholder="Message"></textarea>#}
+                        {{ form.message }}
+                    </div>
+                    <!-- Submit button -->
+                    <button class="btn btn-info btn-block" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
